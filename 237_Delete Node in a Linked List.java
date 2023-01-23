@@ -6,6 +6,9 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+//time O(1)
+//space O(1)
+
 class Solution {
     public void deleteNode(ListNode node) {
         int temp = node.next.val;
