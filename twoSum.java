@@ -1,3 +1,6 @@
+//time O(n)
+//space O(n)
+
 import java.util.*;
 
 class Solution {
