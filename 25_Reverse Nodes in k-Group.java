@@ -8,6 +8,10 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+//T- O(n/k)*k = n
+//s- O(1)
+
 class Solution {
     public int lengthOfLinkedList(ListNode head) {
         int length = 0;
