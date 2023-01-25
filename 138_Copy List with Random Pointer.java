@@ -13,6 +13,9 @@ class Node {
 }
 */
 
+//T-O(n)
+//S-O(1)
+
 class Solution {
     public Node copyRandomList(Node head) {
           Node iter = head; 
