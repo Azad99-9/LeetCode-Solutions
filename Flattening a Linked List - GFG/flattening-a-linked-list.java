@@ -142,6 +142,9 @@ class GfG
         return res;
     }
     
+	//T-O(summation of all node)
+	//s-O(1)
+	
     Node flatten(Node root)
     {
         if(root == null) return null;
