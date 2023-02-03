@@ -1,3 +1,7 @@
+//Time Complexity: N x log(M x 10^d)
+
+//Space Complexity: O(1)
+
 import java.util.* ;
 import java.io.*; 
 public class Solution {
