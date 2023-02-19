@@ -1,32 +1,19 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    // T - O( N )
-    // S - O( N )
-    public void inorder(TreeNode root) {
-        if(root != null) {
-            inorder(root.left);
-            ans.add(root.val);
-            inorder(root.right);
-        }
-    }
+// T-O(n)
+// S-O(1)
 
-    List<Integer> ans = new LinkedList<>();
-    public List<Integer> inorderTraversal(TreeNode root) {
-        inorder(root);
-        return ans;
+class Solution {
+    public int findMaxConsecutiveOnes(int[] nums) {
+        
+        int temp = 0;
+        int max = 0;
+        for(int i= 0; i< nums.length; i++) {
+            if(nums[i] == 1) temp++;
+            else {
+                max = Math.max(temp,max);
+                temp = 0;
+            }
+        }
+        max = Math.max(temp,max);
+        return max;
     }
 }
