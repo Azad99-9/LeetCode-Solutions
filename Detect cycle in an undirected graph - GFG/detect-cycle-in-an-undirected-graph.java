@@ -39,6 +39,8 @@ class Pair {
     }
 }
 
+// Using BFS
+
 class Solution {
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
