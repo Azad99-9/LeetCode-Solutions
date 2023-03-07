@@ -63,6 +63,7 @@ class Solution
     //Function to return list containing vertices in Topological order. 
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
+        // using bfs
         // S - O( N )
         // T - ( V + E )
         int indegree[] = new int[V];
