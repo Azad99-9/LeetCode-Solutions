@@ -70,6 +70,7 @@ class Solution
     //from the source vertex S.
     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S)
     {
+        // T - O(E log V)
         PriorityQueue<Pair> pq = new PriorityQueue<>((x, y) -> x.distance - y.distance);
         
         int[] dist = new int[V];
