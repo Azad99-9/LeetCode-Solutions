@@ -34,54 +34,44 @@ class Rat {
 
 // m is the given matrix and n is the order of matrix
 class Solution {
-    public static boolean inBox(int x, int y, int n, int[][] visited) {
-        if(x >= 0 && x < n && y >= 0 && y< n && visited[x][y] == 0) return true;
+    public static boolean canMove(int i, int j, int n, int[][] m, boolean[][] visited) {
+        if (i >= 0 && j >= 0 && i < n && j < n && m[i][j] == 1 && !visited[i][j]) {
+            return true;
+        }
         return false;
     }
     
-    public static void checkPaths(int x, int y, int[][] m, int n, String ds, ArrayList<String> ans, int[][] visited) {
-        if(x == n-1 && y == n-1) {
-            ans.add(new String(ds));
-            return;
+    public static void ratMove (int i, int j, int[][] m, int n, ArrayList<String> ans, String str, boolean[][] visited) {
+        if (canMove(i, j, n, m, visited)) {
+            if (i == n - 1 && j == n - 1) {
+                ans.add(str);
+                return;
+            }
+            visited[i][j] = true;
+            str += "D";
+            ratMove(i + 1, j, m, n, ans, str, visited);
+            str = str.substring(0, str.length() - 1);
+            
+            str += "R";
+            ratMove(i, j + 1, m, n, ans, str, visited);
+            str = str.substring(0, str.length() - 1);
+            
+            str += "U";
+            ratMove(i - 1, j, m, n, ans, str, visited);
+            str = str.substring(0, str.length() - 1);
+            
+            str += "L";
+            ratMove(i, j - 1, m, n, ans, str, visited);
+            str = str.substring(0, str.length() - 1);
+            
+            visited[i][j] = false;
         }
-        if(inBox(x+1,y,n,visited) && m[x+1][y] != 0) {
-            ds+= "D";
-            visited[x+1][y] = 1;
-            checkPaths(x+1,y,m,n,ds,ans,visited);
-            visited[x+1][y] = 0;
-            ds = ds.substring(0,ds.length()-1)+"";
-        }
-        if(inBox(x,y+1,n,visited) && m[x][y+1] != 0) {
-            ds+= "R";
-            visited[x][y+1] = 1;
-            checkPaths(x,y+1,m,n,ds,ans,visited);
-            visited[x][y+1] = 0;
-            ds = ds.substring(0,ds.length()-1)+"";
-        }
-        if(inBox(x-1,y,n,visited) && m[x-1][y] != 0) {
-            ds+= "U";
-            visited[x-1][y] = 1;
-            checkPaths(x-1,y,m,n,ds,ans,visited);
-            visited[x-1][y] = 0;
-            ds = ds.substring(0,ds.length()-1)+"";
-        }
-        if(inBox(x,y-1,n,visited) && m[x][y-1] != 0) {
-            ds+= "L";
-            visited[x][y-1] = 1;
-            checkPaths(x,y-1,m,n,ds,ans,visited);
-            visited[x][y-1] = 0;
-            ds = ds.substring(0,ds.length()-1)+"";
-        }
-        
     }
     
     public static ArrayList<String> findPath(int[][] m, int n) {
         ArrayList<String> ans = new ArrayList<>();
-        int[][] visited = new int[n][n];
-        visited[0][0] = 1;
-        String ds = "";
-        if(m[0][0] != 0)
-            checkPaths(0,0,m,n,ds,ans,visited);
+        boolean[][] visited = new boolean[n][n];
+        ratMove(0, 0, m, n, ans, "", visited);
         return ans;
     }
 }
