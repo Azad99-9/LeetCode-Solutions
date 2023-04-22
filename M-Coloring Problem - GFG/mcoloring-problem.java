@@ -30,37 +30,35 @@ class GFG {
 // } Driver Code Ends
 
 
-//T-O(n^m)
-//s-O(n)+O(n)
 class solve {
     // Function to determine if graph can be coloured with at most M colours
     // such
     // that no two adjacent vertices of graph are coloured with same colour.
-    public boolean possible(int col, boolean[][] g, int[] colors, int node, int n) {
-        for(int i= 0; i< n; i++) {
-            if(g[node][i])
-                if(colors[i] == col)
-                    return false;
-        }
+    public boolean canApplyColor(boolean adj[][], int clr, int[] clrs, int vertex, int N) {
+        for (int i = 0; i < N; i++) 
+            if (adj[vertex][i] && clrs[i] == clr) return false;
         return true;
     }
     
-    
-    public boolean color(boolean[][] g, int[] colors, int node, int n, int m) {
-        if(node == n)
-            return true;
-        for(int col = 1; col<= m; col++) {
-            if(possible(col, g, colors, node, n)) {
-                colors[node] = col;
-                if(color(g, colors, node+1, n, m)) return true;
-                colors[node] = 0;
+    public boolean color(boolean[][] adj, int[] clrs, int vertex, int n, int m, boolean colored) {
+        if (n == vertex) return true;
+        
+        for (int clr = 0; clr < m; clr++) {
+            if (canApplyColor(adj, clr, clrs, vertex, n) && !colored) {
+                clrs[vertex] = clr;
+                colored = color(adj, clrs, vertex + 1, n, m, colored);
+                clrs[vertex] = -1;
             }
         }
-        return false;
+        
+        return colored;
     }
     
     public boolean graphColoring(boolean graph[][], int m, int n) {
-        int[] colors = new int[n];
-        return color( graph, colors, 0, n, m) ;
+        boolean colored = false;
+        int[] clrs = new int[n+1];
+        for (int i = 0; i < n; i++) clrs[i] = -1;
+        colored = color(graph, clrs, 0, n, m, colored);
+        return colored;
     }
 }
