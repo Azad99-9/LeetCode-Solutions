@@ -172,6 +172,7 @@ class Clone {
     //Function to clone a linked list with next and random pointer.
     Node copyList(Node head) {
         Node ptr = head;
+        // place its duplicate node next to each node
         while (ptr != null) {
             Node tmp = ptr.next;
             ptr.next = new Node(ptr.data);
@@ -180,6 +181,7 @@ class Clone {
         }
         
         ptr = head;
+        // put random node links
         while (ptr != null) {
             if (ptr.arb != null) ptr.next.arb = ptr.arb.next;
             ptr = ptr.next.next;
@@ -188,6 +190,7 @@ class Clone {
         ptr = head;
         Node cloneHead = ptr.next;
         Node clonePtr = cloneHead;
+        // seperate clone and original lists
         while (ptr != null) {
             ptr.next = clonePtr.next;
             ptr = ptr.next;
