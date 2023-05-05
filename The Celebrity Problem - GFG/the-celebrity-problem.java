@@ -33,38 +33,29 @@ class GFG{
 class Solution
 { 
     //Function to find if there is a celebrity in the party or not.
-    boolean knows(int M[][], int a, int b) {
-        if(M[a][b] == 1)
-            return true;
-        return false;
-    }
     int celebrity(int M[][], int n)
     {
-    	Stack<Integer> people = new Stack<>();
-    	for(int i= 0; i< n; i++)
-    	    people.push(i);
-    	while(people.size() > 1) {
-    	    int p1 = people.pop();
-    	    int p2 = people.pop();
-    	    if(knows(M,p1,p2))
-    	        people.push(p2);
-    	    else
-    	        people.push(p1);
-    	}
-    	
-    	int tempCeleb = people.pop();
-    	boolean knowsSomeOne = false;
-    	boolean everyOneknows = true;
-    	for(int i= 0; i< n; i++) {
-    	    knowsSomeOne = knows(M,tempCeleb, i);
-    	    if(knowsSomeOne) return -1;
-    	}
-    	for(int i= 0; i< n; i++) {
-    	    if(i!=tempCeleb) {
-    	        everyOneknows = knows(M,i, tempCeleb);
-    	        if(!everyOneknows) return -1;
-    	    }
-    	}
-    	return tempCeleb;
+        Stack<Integer> people = new Stack<>();
+        
+        for (int person = 0; person < n; person++) people.push(person);
+        
+        while (people.size() != 1) {
+            int person1 = people.pop();
+            int person2 = people.peek();
+            if (M[person1][person2] == 1) continue;
+            else {
+                people.pop();
+                people.push(person1);
+            }
+        }
+        
+        int celeb = people.peek();
+        for (int i = 0; i < n; i++) {
+            if (M[celeb][i] == 1) return -1;
+            if (M[i][celeb] == 0) 
+                if (i != celeb) return -1;
+        }
+        
+        return celeb;
     }
 }
