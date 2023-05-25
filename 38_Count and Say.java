@@ -14,6 +14,8 @@ class Solution {
                 counter = 0;
             }
         }
+
+        System.out.println("bye");
         return res.toString();
     }
 }
