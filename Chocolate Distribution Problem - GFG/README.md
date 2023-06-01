@@ -4,6 +4,8 @@
 <span style="font-size:18px">1. Each student gets <strong>exactly</strong> one packet.<br>
 2. The difference between maximum number of chocolates given to a student and minimum&nbsp;number of chocolates given to a student is minimum.</span></p>
 
+ok then ok
+
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
 <pre><span style="font-size:18px"><strong>Input:
