@@ -1,0 +1,36 @@
+class Solution
+{
+    //Function to delete middle element of a stack.
+    public void deleteMid(Stack<Integer>s,int sizeOfStack){
+        if (sizeOfStack  == 0)return;
+        int half = sizeOfStack/2;
+        
+        Stack<Integer> extra = new Stack<>();
+        for (int i = 0; i < half; i++) {
+            extra.push(s.pop());
+        }
+        // System.out.println(extra);
+        s.pop();
+        while (!extra.isEmpty()) s.push(extra.pop());
+        
+        // int mid = sizeOfStack/2;
+        // Stack<Integer> extra = new Stack<>();
+        
+        // int i= 0;
+        // while (i < mid) {
+        //     extra.push(s.pop()); i++;
+        // }
+        
+        // s.pop();
+        
+        // while (!extra.isEmpty()) {
+        //     s.push(extra.pop());
+        // }
+
+        
+        
+        
+    } 
+}
+
+
