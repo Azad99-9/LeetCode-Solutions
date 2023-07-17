@@ -1,0 +1,22 @@
+class Solution
+{
+    public String FirstNonRepeating(String A)
+    {
+        int[] hash = new int[26];
+        StringBuilder ans = new StringBuilder();
+        Queue<Character> track = new LinkedList<>();
+        for (char x : A.toCharArray()) {
+            hash[x-'a']++;
+            if (hash[x-'a'] < 2) {
+                track.offer(x);
+            }
+            while (!track.isEmpty() && hash[track.peek()-'a']>1) {
+                track.poll();
+            }
+            if (track.isEmpty()) {
+                ans.append('#');
+            } else ans.append(track.peek());
+        }
+        return ans.toString();
+    }
+}
