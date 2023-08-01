@@ -1,0 +1,22 @@
+public class Solution {
+    public static int unboundedKnapsack(int n, int w, int[] profit, int[] weight) {
+        int[] next = new int[w+1];
+        int[] cur = new int[w+1];
+        
+        Arrays.fill(next,  Integer.MIN_VALUE);
+        next[w] = 0;
+
+        for (int i = n-1; i > -1; i--) {
+            for (int wt = w; wt > -1; wt--) {
+                int pick = Integer.MIN_VALUE;
+                if (wt + weight[i] <= w) pick = profit[i]+cur[wt + weight[i]];
+                int notPick = next[wt];
+                cur[wt] = Math.max(pick, notPick);
+            }
+            // System.out.println(Arrays.toString(cur));
+            next = cur;
+            cur = new int[w+1];
+        }
+        return next[0] == Integer.MIN_VALUE ? 0 : next[0];
+    }
+}
