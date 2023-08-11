@@ -1,0 +1,47 @@
+//{ Driver Code Starts
+// Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+class GfG {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int sum = sc.nextInt();
+            int N = sc.nextInt();
+            int coins[] = new int[N];
+            for (int i = 0; i < N; i++) coins[i] = sc.nextInt();
+            Solution ob = new Solution();
+            System.out.println(ob.count(coins, N, sum));
+        }
+    }
+}
+
+
+// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solution {
+    public long count(int denominations[], int n, int value) {
+        long[] next = new long[value+1];
+		long[] cur = new long[value+1];
+		
+		next[value] = 1;
+
+		for (int i=n-1; i > -1; i--) {
+			for (int s = value; s > -1; s--){
+				long pick = 0;
+				if (s + denominations[i] <= value) pick = cur[s + denominations[i]];
+				long notPick = next[s];
+				cur[s] = pick + notPick;
+			}
+			next = cur;
+			cur = new long[value+1];
+		}
+
+		return next[0];
+    }
+}
