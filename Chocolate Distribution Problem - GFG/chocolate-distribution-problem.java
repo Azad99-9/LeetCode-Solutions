@@ -23,10 +23,8 @@ class GfG
             int m = sc.nextInt();
             
             Solution ob = new Solution();
-            
     		System.out.println(ob.findMinDiff(arr,n,m));
         }
-        
     }
 }
 // } Driver Code Ends

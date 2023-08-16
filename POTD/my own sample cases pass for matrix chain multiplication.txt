@@ -1,0 +1,33 @@
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int recursion(int i, int j, Set<Integer> cuts, int[][] dp) {
+        if (cuts.isEmpty()) return 0;
+        int min = Integer.MAX_VALUE;
+        // int value = 0;
+        if (dp[i][j] != -1) return dp[i][j];
+        for (int cut = i+1; cut < j; cut++) {
+            if (cuts.contains(cut)) {
+                cuts.remove(cut);
+                min = Math.min(
+                    min,
+                    (j-i) + recursion(i, cut, cuts, dp) + recursion(cut, j, cuts, dp)
+                );
+                cuts.add(cut);
+            }
+        }
+
+        return dp[i][j] = (min == Integer.MAX_VALUE ? 0 : min);
+    }
+    public static int cost(int n, int c, int cuts[]) {
+
+        Set<Integer> Cuts = new HashSet<>();
+        for (int cut: cuts) Cuts.add(cut);
+        int[][] dp = new int[c][c];
+        for (int[] d: dp) Arrays.fill(d, -1);
+        return recursion(0, n, Cuts, dp);
+
+
+    }
+
+}
