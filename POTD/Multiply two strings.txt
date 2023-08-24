@@ -1,0 +1,47 @@
+class Solution
+{
+    public String multiplyStrings(String s1,String s2)
+    {
+       
+        boolean isNegative = false;
+        
+        if ((s1.charAt(0) == '-' && s2.charAt(0) != '-') || (s1.charAt(0) != '-' && s2.charAt(0) == '-'))
+            isNegative = true;
+        
+        if (s1.charAt(0) == '-')
+            s1 = s1.substring(1);
+        if (s2.charAt(0) == '-')
+            s2 = s2.substring(1);
+        
+        int n = s1.length();
+        int m = s2.length();
+        int[] result = new int[n + m];
+        
+        for (int i = n - 1; i >= 0; i--)
+        {
+            for (int j = m - 1; j >= 0; j--)
+            {
+                int num1 = s1.charAt(i) - '0';
+                int num2 = s2.charAt(j) - '0';
+                int product = num1 * num2;
+                
+                int sum = product + result[i + j + 1];
+                result[i + j + 1] = sum % 10;
+                result[i + j] += sum / 10;
+            }
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        for (int digit : result)
+        {
+            if (!(sb.length() == 0 && digit == 0)) // Skip leading zeros
+                sb.append(digit);
+        }
+        
+        String finalResult = sb.length() == 0 ? "0" : sb.toString();
+        if (isNegative && !finalResult.equals("0"))
+            finalResult = "-" + finalResult;
+        
+        return finalResult;
+    }
+}
