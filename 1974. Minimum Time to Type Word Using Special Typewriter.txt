@@ -1,0 +1,23 @@
+class Solution {
+    public int minTimeToType(String s) {
+        int i = 0;
+        char cur = 'a';
+        char nxt = s.charAt(0);
+        int n = s.length();
+        int steps = 0;
+
+        while (i < n) {
+            nxt = s.charAt(i);
+            steps += Math.min(
+                Math.min(
+                Math.abs(cur-nxt),
+                Math.abs('a'-cur) + Math.abs('z'-nxt) + 1
+                ),
+                Math.abs('z'-cur) + Math.abs('a'-nxt) + 1)+1;
+            cur = nxt;
+            i++;
+        }
+
+        return steps;
+    }
+}
