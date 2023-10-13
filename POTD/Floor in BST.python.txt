@@ -1,0 +1,19 @@
+class Solution:
+    def floor(self, root, x):
+        
+        def recur(root, x, ans):
+            if (root is None): 
+                if ans is None: return -1
+                else: return ans.data
+            
+            if (root.data == x): return x
+            
+            if (root.data < x):
+                ans = root
+                return recur(root.right, x, ans)
+                
+            else :
+                return recur(root.left, x, ans)
+                
+    
+        return recur(root, x, None)
