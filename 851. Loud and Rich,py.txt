@@ -1,0 +1,39 @@
+class Solution:
+    def loudAndRich(self, richer: List[List[int]], quiet: List[int]) -> List[int]:
+        def dfs(node, vis, que, ans, graph):
+            if vis[node]: return ans[node]
+
+            vis[node] = True
+
+            mini = que[node]
+            min_node = node
+
+            for adj_node in graph[node]:
+                cur_mini_node = dfs(adj_node, vis, que, ans, graph)
+                if que[cur_mini_node] < mini:
+                    min_node = cur_mini_node
+                    mini = que[cur_mini_node]
+
+            ans[node] = min_node
+            return min_node
+
+        def make_graph(richer, n):
+            graph = {}
+            for i in range(n):
+                graph[i] = []
+
+            for rich in richer:
+                u = rich[0]
+                v = rich[1]
+
+                graph[v].append(u)
+
+            return graph
+
+        n = len(quiet)
+        graph = make_graph(richer, n)
+        ans = [i for i in range(n)]
+        vis = [False for _ in range(n)]
+        for node in range(n):
+            dfs(node, vis, quiet, ans, graph)
+        return ans
