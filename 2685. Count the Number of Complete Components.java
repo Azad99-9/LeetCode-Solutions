@@ -20,6 +20,9 @@ class Solution {
     return cnt == edges && ret;
   }
   
+  
+  
+  
   public int countCompleteComponents(int n, int[][] edges) {
     adj = new ArrayList[n];
     
