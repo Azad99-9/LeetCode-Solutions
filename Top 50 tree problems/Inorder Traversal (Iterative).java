@@ -12,11 +12,14 @@ class Solution
         while (cur != null || !stk.isEmpty()) {
             while (cur != null) {
                 stk.push(cur);
-                ans.add(cur.data);
                 cur = cur.left;
             }
             
-            cur = stk.pop().right;
+            cur = stk.pop();
+            
+            ans.add(cur.data);
+                        
+            cur = cur.right;
             
             
         }
