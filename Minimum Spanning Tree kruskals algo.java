@@ -26,6 +26,7 @@ class DisjointSet {
 }
 
 class Solution{
+	// pick the least edge at each time from entire graph.
 	static int spanningTree(int V, int E, int edges[][]){
 	    DisjointSet ds = new DisjointSet(V);
 	    

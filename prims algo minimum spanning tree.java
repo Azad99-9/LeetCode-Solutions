@@ -8,6 +8,7 @@ class Pair {
 }
 
 class Solution{
+	//at each level greedily check for the least weight edge that connects the non-mst to mst.
 	static int spanningTree(int V, int E, int edges[][]){
 	    ArrayList<ArrayList<int[]>> adj = new ArrayList<>();
 	    boolean[] vis = new boolean[V];
